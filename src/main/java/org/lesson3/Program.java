@@ -25,10 +25,18 @@ public class Program {
         System.out.println(employeeLinkedList);
         System.out.println();
 
-        //boolean res = employeeLinkedList.contains(null);
+        employeeLinkedList.reverse();
+        System.out.println(employeeLinkedList);
+        System.out.println();
+
+        boolean res = employeeLinkedList.contains(null);
 
         employeeLinkedList.sort(new EmployeeNameComparator(SortType.Ascending));
 
+        System.out.println(employeeLinkedList);
+        System.out.println();
+
+        employeeLinkedList.reverse();
         System.out.println(employeeLinkedList);
         System.out.println();
 
@@ -37,15 +45,9 @@ public class Program {
         System.out.println(employeeLinkedList);
         System.out.println();
 
-        employeeLinkedList.removeFirst();
-        employeeLinkedList.removeLast();
-
+        employeeLinkedList.reverse();
         System.out.println(employeeLinkedList);
-
-        LinkedList<Employee>.Node node = employeeLinkedList.head;
-        while (node != null){
-            node = node.next;
-        }
+        System.out.println();
 
     }
 

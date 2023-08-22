@@ -149,6 +149,18 @@ public class LinkedList<T> implements Iterable<T> {
         head = null;
 
     }
+    public void reverse(){
+        Node temp = head;
+        Node newHead=null;
+        Node tempNext;
+        while (temp != null){
+            tempNext = temp.next;
+            temp.next = newHead;
+            newHead = temp;
+            temp = tempNext;
+        }
+        head=newHead;
+    }
 
     @Override
     public String toString() {
