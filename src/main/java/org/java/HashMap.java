@@ -19,7 +19,7 @@ public class HashMap<K, V> implements Iterable<HashMap.Entity> {
     class HashMapIterator implements Iterator<HashMap.Entity> {
 
         /**
-         *TODO: Необходимо доработать структуру класса HashMap, реализованную на семинаре.
+         * Необходимо доработать структуру класса HashMap, реализованную на семинаре.
          * У нас появились методы добавления, удаления и поиска элемента по ключу.
          * Добавить возможность перебора всех элементов нашей структуры данных,
          * необходимо добавить несколько элементов,
@@ -27,26 +27,55 @@ public class HashMap<K, V> implements Iterable<HashMap.Entity> {
          * Подумайте, возможно вам стоит обратиться к интерфейсу Iterable.
          * @return
          */
+        int countEntity = size;
+        int countPosition=0;
+        boolean lastNode = true;
+        Entity position;
+        Bucket.Node head;
+
         @Override
         public boolean hasNext() {
-
-            return false;
+            if (countEntity == 0)
+                return false;
+            return true;
         }
 
         @Override
         public Entity next() {
+            while (countPosition < buckets.length){
+                if (buckets[countPosition] != null && head == null && lastNode && buckets[countPosition].head != null){
+                    lastNode = false;
+                    head = buckets[countPosition].head;
+                    position = head.value;
+                    countEntity--;
+                    head = head.next;
+                    return position;
+                }else if (head != null){
+                    position = head.value;
+                    countEntity--;
+                    head = head.next;
+                    return position;
+                }else
+                    lastNode = true;
+                    countPosition++;
+            }
             return null;
         }
     }
 
 
     /**
-     * TODO: Вывести все элементы хеш-таблицы на экран через toString()
+     *  Вывести все элементы хеш-таблицы на экран через toString()
      * @return
      */
     @Override
     public String toString() {
-        return super.toString();
+        StringBuilder build = new StringBuilder();
+        for (Entity entity : this) {
+            build.append(entity.key);
+            build.append(" \n");
+        }
+        return build.toString();
     }
 
 
